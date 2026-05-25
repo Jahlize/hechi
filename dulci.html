@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dulcinea</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background: linear-gradient(135deg,#f7c8e8,#d8c4ff,#cdb4ff);
+      min-height:100vh;
+      overflow-x:hidden;
+      color:white;
+    }
+
+    /* Fondo glow */
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:rgba(255,255,255,0.15);
+      filter:blur(120px);
+      top:-100px;
+      left:-100px;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:rgba(255,102,196,0.25);
+      filter:blur(120px);
+      bottom:-100px;
+      right:-100px;
+      z-index:-1;
+    }
+
+    header{
+      text-align:center;
+      padding:80px 20px 40px;
+    }
+
+    .title{
+      font-size:5rem;
+      font-family:'Playfair Display', serif;
+      font-weight:bold;
+      letter-spacing:5px;
+      background:linear-gradient(to bottom,#ffffff,#ffb3ec,#c77dff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.7),
+        0 0 20px rgba(255,102,196,0.5);
+    }
+
+    .subtitle{
+      margin-top:20px;
+      font-size:1.2rem;
+      color:#fff;
+      opacity:0.9;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+      padding:40px 0;
+    }
+
+    .glass-card{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(15px);
+      border-radius:30px;
+      padding:40px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.15);
+      margin-bottom:40px;
+    }
+
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+
+    .hero-text{
+      flex:1;
+    }
+
+    .hero-text h2{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .hero-text p{
+      font-size:1.1rem;
+      line-height:1.8;
+      color:#fdfdfd;
+    }
+
+    .hero-image{
+      flex:1;
+      text-align:center;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:420px;
+      border-radius:25px;
+      box-shadow:
+        0 0 20px rgba(255,255,255,0.4),
+        0 0 40px rgba(255,102,196,0.4);
+    }
+
+    .buttons{
+      margin-top:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 30px;
+      margin-right:15px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#ff66c4;
+      color:white;
+      box-shadow:0 0 15px rgba(255,102,196,0.6);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 25px rgba(255,102,196,0.9);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.2);
+      color:white;
+      border:1px solid rgba(255,255,255,0.4);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.3);
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:2.5rem;
+      margin-bottom:30px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .gallery img{
+      width:100%;
+      border-radius:25px;
+      transition:0.4s;
+      box-shadow:0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .gallery img:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 30px rgba(255,102,196,0.7);
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:white;
+      opacity:0.8;
+    }
+
+    /* Corazón glow */
+    .heart{
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      font-size:4rem;
+      color:#ff66c4;
+      animation:pulse 2s infinite;
+      text-shadow:
+        0 0 10px #ff66c4,
+        0 0 20px #ff66c4,
+        0 0 40px #ff66c4;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.1);}
+      100%{transform:scale(1);}
+    }
+
+    @media(max-width:768px){
+      .title{
+        font-size:3rem;
+      }
+
+      .hero-text h2{
+        font-size:2.2rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="title">DULCINEA</h1>
+    <p class="subtitle">
+      ✨ Un universo lleno de magia, dulzura y personalidad ✨
+    </p>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="glass-card hero">
+
+      <div class="hero-text">
+        <h2>Bienvenidos a Dulcinea 💖</h2>
+
+        <p>
+          Un espacio mágico inspirado en colores pastel,
+          brillo holográfico y una estética soñadora.
+          Cada detalle transmite ternura, creatividad
+          y una esencia única.
+        </p>
+
+        <div class="buttons">
+          <a href="#" class="btn btn-primary">Ver Más</a>
+          <a href="#" class="btn btn-secondary">Contacto</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <!-- CAMBIA ESTA IMAGEN -->
+        <img src="tu-imagen.jpg" alt="Dulcinea">
+      </div>
+
+    </section>
+
+    <!-- SOBRE -->
+    <section class="glass-card">
+
+      <h2 class="section-title">🌸 Sobre Dulcinea</h2>
+
+      <p style="text-align:center; line-height:2; font-size:1.1rem;">
+        Dulcinea representa autenticidad, amor por los detalles
+        y una estética moderna llena de luz y fantasía.
+        Inspirada en tonos rosados y lilas con efectos glow,
+        esta web transmite una sensación elegante y acogedora.
+      </p>
+
+    </section>
+
+    <!-- GALERIA -->
+    <section class="glass-card">
+
+      <h2 class="section-title">💫 Galería</h2>
+
+      <div class="gallery">
+        <img src="https://picsum.photos/400/500?1">
+        <img src="https://picsum.photos/400/500?2">
+        <img src="https://picsum.photos/400/500?3">
+      </div>
+
+    </section>
+
+  </div>
+
+  <footer>
+    Hecho con amor para Dulcinea 💜
+  </footer>
+
+  <div class="heart">♡</div>
+
+</body>
+</html>
