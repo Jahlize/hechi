@@ -1,467 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulcinea Designer</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-pastel: #FFF0F5;
+            --rosa-principal: #FFB6C1;
+            --lila-principal: #E6E6FA;
+            /* Degradado lila-morado solicitado */
+            --lila-morado-gradiente: linear-gradient(45deg, #9370DB, #8A2BE2);
+            --azul-pastel: #E0F7FA;
+            --texto: #4A4A4A;
+            --negro: #000000;
+        }
 
-<title>Dulcinea ✨</title>
+        body {
+            background: linear-gradient(135deg, var(--rosa-pastel), var(--lila-principal), var(--azul-pastel));
+            background-attachment: fixed;
+            color: var(--texto);
+            margin: 0;
+            padding: 0;
+        }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+        /* Título con degradado Lila a Morado */
+        .titulo-marca {
+            font-size: 26px;
+            font-weight: bold;
+            background: var(--lila-morado-gradiente);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-<style>
+        header { background: rgba(255, 255, 255, 0.9); padding: 15px; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--rosa-principal); }
+        .header-container { max-width: 1000px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
 
-:root{
-  --pink:#ff8fd8;
-  --pink-light:#ffd8f3;
-  --purple:#b388ff;
-  --purple-dark:#7b4dff;
-  --white:#ffffff;
-  --glass:rgba(255,255,255,0.12);
-  --border:rgba(255,255,255,0.25);
-  --shadow:0 10px 40px rgba(0,0,0,0.15);
-}
+        .main-container { max-width: 1000px; margin: 25px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+        /* Foto de Perfil */
+        .foto-perfil { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #D8BFD8; object-fit: cover; }
+        .avatar-small { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
 
-html{
-  scroll-behavior:smooth;
-}
+        .post-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:
-  radial-gradient(circle at top left,#ffd8f3 0%,transparent 30%),
-  radial-gradient(circle at bottom right,#cdb4ff 0%,transparent 30%),
-  linear-gradient(135deg,#f8d7ff,#d8c8ff,#c6b6ff);
-  color:white;
-  overflow-x:hidden;
-  min-height:100vh;
-  position:relative;
-}
+        /* Pie de página */
+        footer { text-align: center; padding: 20px; font-size: 12px; color: var(--negro); font-weight: 500; }
 
-/* Glow fondo */
-
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  border-radius:50%;
-  filter:blur(120px);
-  z-index:-1;
-}
-
-body::before{
-  width:400px;
-  height:400px;
-  background:#ff66c4;
-  top:-100px;
-  left:-100px;
-  opacity:0.35;
-}
-
-body::after{
-  width:350px;
-  height:350px;
-  background:#9d4edd;
-  bottom:-100px;
-  right:-100px;
-  opacity:0.3;
-}
-
-/* NAVBAR */
-
-nav{
-  width:100%;
-  padding:20px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.08);
-  border-bottom:1px solid rgba(255,255,255,0.12);
-  z-index:1000;
-}
-
-.logo{
-  font-size:2rem;
-  font-family:'Playfair Display',serif;
-  font-weight:bold;
-  background:linear-gradient(to right,#fff,#ffb6ec,#d9b3ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-nav ul{
-  display:flex;
-  gap:30px;
-  list-style:none;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-  font-weight:500;
-}
-
-nav a:hover{
-  color:#ffd8f3;
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px 8%;
-  gap:60px;
-  flex-wrap:wrap;
-}
-
-.hero-text{
-  flex:1;
-  min-width:300px;
-  animation:fadeUp 1s ease;
-}
-
-.hero-text h1{
-  font-size:5rem;
-  line-height:1;
-  margin-bottom:25px;
-  font-family:'Playfair Display',serif;
-  background:linear-gradient(to bottom,#fff,#ffc9ef,#cba6ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:
-  0 0 10px rgba(255,255,255,0.7),
-  0 0 25px rgba(255,102,196,0.5);
-}
-
-.hero-text p{
-  font-size:1.2rem;
-  line-height:1.9;
-  max-width:600px;
-  color:#f8f8f8;
-}
-
-/* BOTONES */
-
-.buttons{
-  margin-top:35px;
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  padding:15px 35px;
-  border-radius:60px;
-  text-decoration:none;
-  font-weight:600;
-  transition:0.4s;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.btn-primary{
-  background:linear-gradient(45deg,#ff66c4,#b388ff);
-  color:white;
-  box-shadow:
-  0 0 15px rgba(255,102,196,0.5),
-  0 0 30px rgba(179,136,255,0.4);
-}
-
-.btn-primary:hover{
-  transform:translateY(-5px) scale(1.03);
-  box-shadow:
-  0 0 25px rgba(255,102,196,0.8),
-  0 0 50px rgba(179,136,255,0.7);
-}
-
-.btn-secondary{
-  border:1px solid rgba(255,255,255,0.3);
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(10px);
-  color:white;
-}
-
-.btn-secondary:hover{
-  background:rgba(255,255,255,0.2);
-}
-
-/* HERO IMAGE */
-
-.hero-image{
-  flex:1;
-  min-width:300px;
-  display:flex;
-  justify-content:center;
-  animation:float 4s ease-in-out infinite;
-}
-
-.hero-image img{
-  width:100%;
-  max-width:420px;
-  border-radius:35px;
-  border:2px solid rgba(255,255,255,0.2);
-  box-shadow:
-  0 0 20px rgba(255,255,255,0.2),
-  0 0 40px rgba(255,102,196,0.4),
-  0 0 80px rgba(179,136,255,0.3);
-}
-
-/* SECCIONES */
-
-.section{
-  padding:100px 8%;
-}
-
-.glass-card{
-  background:var(--glass);
-  border:1px solid var(--border);
-  backdrop-filter:blur(18px);
-  border-radius:35px;
-  padding:50px;
-  box-shadow:var(--shadow);
-}
-
-.section-title{
-  text-align:center;
-  font-size:3rem;
-  margin-bottom:40px;
-  font-family:'Playfair Display',serif;
-}
-
-/* GALERIA */
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-
-.gallery img{
-  width:100%;
-  border-radius:25px;
-  transition:0.4s;
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,0.15);
-}
-
-.gallery img:hover{
-  transform:scale(1.04);
-  box-shadow:
-  0 0 20px rgba(255,102,196,0.5),
-  0 0 40px rgba(179,136,255,0.5);
-}
-
-/* FOOTER */
-
-footer{
-  text-align:center;
-  padding:40px 20px;
-  color:#fff;
-  opacity:0.8;
-}
-
-/* PARTICULAS */
-
-.sparkle{
-  position:absolute;
-  width:8px;
-  height:8px;
-  background:white;
-  border-radius:50%;
-  animation:sparkle 6s linear infinite;
-  opacity:0.6;
-}
-
-/* ANIMACIONES */
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-  100%{transform:translateY(0);}
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(40px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes sparkle{
-  from{
-    transform:translateY(100vh) scale(0);
-  }
-  to{
-    transform:translateY(-10vh) scale(1);
-  }
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-  .hero{
-    text-align:center;
-  }
-
-  .hero-text h1{
-    font-size:3.5rem;
-  }
-
-  nav{
-    flex-direction:column;
-    gap:15px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .hero-text h1{
-    font-size:2.8rem;
-  }
-
-  .section-title{
-    font-size:2.2rem;
-  }
-
-  .glass-card{
-    padding:30px;
-  }
-
-}
-
-</style>
+        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
 
-<!-- PARTICULAS -->
-<div class="sparkle" style="left:10%; animation-delay:0s;"></div>
-<div class="sparkle" style="left:30%; animation-delay:2s;"></div>
-<div class="sparkle" style="left:50%; animation-delay:4s;"></div>
-<div class="sparkle" style="left:70%; animation-delay:1s;"></div>
-<div class="sparkle" style="left:90%; animation-delay:3s;"></div>
+    <header>
+        <div class="header-container">
+            <div class="titulo-marca">Dulcinea Designer</div>
+            <img src="https://xatimg.com/image/qdh7T2GNGQAd.png" class="foto-perfil" alt="Perfil">
+        </div>
+    </header>
 
-<!-- NAVBAR -->
-<nav>
+    <div class="main-container">
+        <main>
+            <article class="post-card">
+                <div class="post-header">
+                    <img src="https://xatimg.com/image/qdh7T2GNGQAd.png" class="avatar-small" alt="Perfil">
+                    <div>
+                        <strong>Dulcinea Designer</strong><br>
+                        <small>Publicado recientemente 🦋</small>
+                    </div>
+                </div>
+                <p>Bienvenidas a mi espacio creativo. Inspiración, flores y mariposas en cada diseño. ✨</p>
+            </article>
+        </main>
 
-  <div class="logo">Dulcinea ✨</div>
-
-  <ul>
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#">Galería</a></li>
-    <li><a href="#">Sobre mí</a></li>
-    <li><a href="#">Contacto</a></li>
-  </ul>
-
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-
-  <div class="hero-text">
-
-    <h1>DULCINEA</h1>
-
-    <p>
-      Un universo lleno de magia, colores pastel,
-      brillo holográfico y una esencia única.
-      Inspirado en sueños, creatividad y dulzura.
-    </p>
-
-    <div class="buttons">
-
-      <a href="#" class="btn btn-primary">
-        💖 Explorar
-      </a>
-
-      <a href="#" class="btn btn-secondary">
-        ✨ Contacto
-      </a>
-
+        <aside>
+            <div class="post-card">
+                <h4>Sobre mí</h4>
+                <p>Diseñadora enfocada en la estética floral y delicada.</p>
+            </div>
+        </aside>
     </div>
 
-  </div>
-
-  <div class="hero-image">
-
-    <!-- CAMBIA ESTA IMAGEN -->
-    <img src="https://xatimg.com/image/VIXBfE3gQCj8.png" alt="Dulcinea">
-
-  </div>
-
-</section>
-
-<!-- SOBRE -->
-<section class="section">
-
-  <div class="glass-card">
-
-    <h2 class="section-title">
-      🌸 Sobre Dulcinea
-    </h2>
-
-    <p style="
-      text-align:center;
-      line-height:2;
-      font-size:1.1rem;
-      max-width:850px;
-      margin:auto;
-    ">
-      Dulcinea representa ternura, autenticidad y una estética
-      soñadora llena de color y fantasía. Su universo mezcla
-      tonos rosados, lilas brillantes y efectos glow para crear
-      una experiencia elegante, moderna y encantadora.
-    </p>
-
-  </div>
-
-</section>
-
-<!-- GALERIA -->
-<section class="section">
-
-  <div class="glass-card">
-
-    <h2 class="section-title">
-      💫 Galería de Gifs
-    </h2>
-
-    <div class="gallery">
-
-      <img src="https://xatimg.com/image/DbGrVN3trxmH.gif">
-      <img src="https://xatimg.com/image/ftY3aPiImSLz.gif">
-      <img src="https://xatimg.com/image/oNtkoZ1Jjdbo.gif">
-      <img src="https://xatimg.com/image/ZrFYIlg6EP7u.gif">
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-  Hecho por Jahlize para Dulcinea 💜
-</footer>
+    <footer>
+        Hecho x Jahlize
+    </footer>
 
 </body>
 </html>
